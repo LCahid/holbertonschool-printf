@@ -33,14 +33,15 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					str = va_arg(el, char *);
+					str == NULL ? str = "(null)" : str;
 					size += write(1, str, _strlen(str));
-					break;
-				case '%':
-					write(1, "%", 1);
-					size++;
 					break;
 				case '\0':
 					continue;
+				default:
+					_putchar('%');
+					i--;
+					break;
 			}
 			i++;
 		}
