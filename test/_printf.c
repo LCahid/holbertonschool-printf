@@ -36,18 +36,19 @@ int _printf(const char *format, ...)
 					size += write(1, str, _strlen(str));
 					break;
 				case '%':
-					_putchar('%');
-					size++;
+					_putchar('%'), size++;
 					break;
 				case '\0':
-					continue;
+					i--;
+					break;
 				default:
 					_putchar('%');
 					size = size + _printf("%c", format[i]) + 1;
 					break;
 			}
 		}
+	va_end(el);
 	if (size == 0)
-		exit(99);
+		return (-1);
 	return (size);
 }
