@@ -40,7 +40,7 @@ int _printf(const char *format, ...)
 					continue;
 				default:
 					_putchar('%');
-					i--;
+					size++;
 					break;
 			}
 			i++;
