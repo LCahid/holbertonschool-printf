@@ -1,7 +1,7 @@
 #include <unistd.h>
 /**
   * _putchar - put char
-  * 
+  *
   * @c: char
   *
   */
