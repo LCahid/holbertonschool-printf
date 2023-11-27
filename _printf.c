@@ -17,7 +17,6 @@ int _printf(const char *format, ...)
 
 	va_start(el, format);
 	for (i = 0; format && format[i]; i++)
-	{
 		if (format[i] != '%')
 		{
 			write(1, format + i, 1);
@@ -25,7 +24,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			switch (format[i + 1])
+			switch (format[++i])
 			{
 				case 'c':
 					_putchar(va_arg(el, int));
@@ -36,16 +35,18 @@ int _printf(const char *format, ...)
 					str == NULL ? str = "(null)" : str;
 					size += write(1, str, _strlen(str));
 					break;
+				case '%':
+					_putchar('%');
+					size++;
+					break;
 				case '\0':
 					continue;
 				default:
 					_putchar('%');
-					size++;
+					size = size + _printf("%c", format[i]) + 1;
 					break;
 			}
-			i++;
 		}
-	}
 	if (size == 0)
 		exit(99);
 	return (size);
