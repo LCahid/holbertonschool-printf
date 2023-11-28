@@ -2,8 +2,45 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include "main.h"
+/**
+ * handle_print - function that handles printing different data types
+ * @format: Pointer to the format
+ * @i: the iterator for the format iteration
+ * Return: the size
+ */
+int handle_print(char *format, int *i)
+{
+	int size = 0;
 
-
+ 	switch (format[++i])
+	{
+		case 'c':
+			_putchar(va_arg(el, int));
+			size++;
+			break;
+		case 's':
+			str = va_arg(el, char *);
+                       str == NULL ? str = "(null)" : str;
+                                        size += write(1, str, _strlen(str));
+                                        break;
+                                case '%':
+                                        _putchar('%'), size++;
+                                        break;
+                                case 'd':
+                                case 'i':
+                                        _putchar(va_arg(el, int));
+                                        size++;
+                                        break;
+                                case '\0':
+                                        i--;
+                                        break;
+                                default:
+                                        _putchar('%');
+                                        size = size + _printf("%c", format[i]) + 1;
+                                        break;
+                        }	
+	return (size);
+}
 /**
  * _printf - Entry point
  *
