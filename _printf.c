@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include "main.h"
+
+
 /**
  * _printf - Entry point
  *
@@ -37,6 +39,11 @@ int _printf(const char *format, ...)
 					break;
 				case '%':
 					_putchar('%'), size++;
+					break;
+				case 'd':
+				case 'i':
+					_putchar(va_arg(el, int));
+					size++;
 					break;
 				case '\0':
 					i--;
