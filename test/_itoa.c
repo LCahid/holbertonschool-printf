@@ -17,9 +17,9 @@ char *itoa(int a)
 	size++;
 	buffer = malloc(size);
 	temp = 0;
-	for (temp = size - 1; temp >= 0; size--)
+	for (temp = size - 1; temp >= 0; temp--)
 	{
-		buffer[i] = a % 10 + '0';
+		buffer[temp] = a % 10 + '0';
 		a /= 10;
 	}
 	return (buffer);
