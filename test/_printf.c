@@ -28,8 +28,9 @@ int handle_print(const char *format, int *i, va_list *el)
 			_putchar('%'), size++;
 			break;
 		case 'i':
-
-			size++;
+		case 'd':
+			str = itoa(va_arg(*el, int));
+			size += write(1, str, _strlen(str));
 			break;
 		case '\0':
 			(*i)--;

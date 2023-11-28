@@ -6,39 +6,41 @@
  * handle_print - function that handles printing different data types
  * @format: Pointer to the format
  * @i: the iterator for the format iteration
+ * @el: list pointer
  * Return: the size
  */
-int handle_print(char *format, int *i)
+int handle_print(const char *format, int *i, va_list *el)
 {
 	int size = 0;
+	char *str;
 
- 	switch (format[++i])
+	switch (format[++(*i)])
 	{
 		case 'c':
-			_putchar(va_arg(el, int));
+			_putchar(va_arg(*el, int));
 			size++;
 			break;
 		case 's':
-			str = va_arg(el, char *);
+			str = va_arg(*el, char *);
 			str == NULL ? str = "(null)" : str;
 			size += write(1, str, _strlen(str));
 			break;
 		case '%':
 			_putchar('%'), size++;
 			break;
-		case 'd':
 		case 'i':
-			_putchar(va_arg(el, int));
-			size++;
+		case 'd':
+			str = itoa(va_arg(*el, int));
+			size += write(1, str, _strlen(str));
 			break;
 		case '\0':
-			i--;
+			(*i)--;
 			break;
 		default:
 			_putchar('%');
-			size = size + _printf("%c", format[i]) + 1;
+			size = size + _printf("%c", format[*i]) + 1;
 			break;
-	}	
+	}
 	return (size);
 }
 /**
@@ -52,7 +54,6 @@ int _printf(const char *format, ...)
 {
 	va_list el;
 	int i, size = 0;
-	char *str;
 
 	va_start(el, format);
 	for (i = 0; format && format[i]; i++)
@@ -62,35 +63,7 @@ int _printf(const char *format, ...)
 			size++;
 		}
 		else
-		{
-			switch (format[++i])
-			{
-				case 'c':
-					_putchar(va_arg(el, int));
-					size++;
-					break;
-				case 's':
-					str = va_arg(el, char *);
-					str == NULL ? str = "(null)" : str;
-					size += write(1, str, _strlen(str));
-					break;
-				case '%':
-					_putchar('%'), size++;
-					break;
-				case 'd':
-				case 'i':
-					_putchar(va_arg(el, int));
-					size++;
-					break;
-				case '\0':
-					i--;
-					break;
-				default:
-					_putchar('%');
-					size = size + _printf("%c", format[i]) + 1;
-					break;
-			}
-		}
+			size += handle_print(format, &i, &el);
 	va_end(el);
 	if (size == 0)
 		return (-1);
