@@ -6,6 +6,7 @@
  * handle_print - function that handles printing different data types
  * @format: Pointer to the format
  * @i: the iterator for the format iteration
+ * @el: list pointer
  * Return: the size
  */
 int handle_print(const char *format, int *i, va_list *el)
@@ -13,7 +14,7 @@ int handle_print(const char *format, int *i, va_list *el)
 	int size = 0;
 	char *str;
 
- 	switch (format[++(*i)])
+	switch (format[++(*i)])
 	{
 		case 'c':
 			_putchar(va_arg(*el, int));
@@ -39,7 +40,7 @@ int handle_print(const char *format, int *i, va_list *el)
 			_putchar('%');
 			size = size + _printf("%c", format[*i]) + 1;
 			break;
-	}	
+	}
 	return (size);
 }
 /**
