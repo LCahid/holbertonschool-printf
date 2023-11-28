@@ -28,7 +28,7 @@ int handle_print(const char *format, int *i, va_list *el)
 			_putchar('%'), size++;
 			break;
 		case 'i':
-			_putchar(va_arg(*el, int));
+
 			size++;
 			break;
 		case '\0':
