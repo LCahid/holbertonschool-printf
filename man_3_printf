@@ -8,9 +8,8 @@ SYNOPSIS
 	int _printf(const char *format, ...);
 DESCRIPTION
 	The '_printf' function is very similar to the printf function from the standard c library.
-	But it is a variadic function that returns also the size of the entered characters. The function
-	accepts as argument the format string (*format) and different
-	data types.
+	But it is a variadic function that returns the size of the entered characters. The function
+	accepts as argument the format string (*format) and different data types.
 RETURN VALUE
 	The function returns the size of the printed characters of the entered string.
 	in case of failure, it returns -1.
