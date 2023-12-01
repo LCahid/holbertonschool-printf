@@ -8,7 +8,22 @@ SYNOPSIS
 	int _printf(const char *format, ...);
 DESCRIPTION
 	The '_printf' function is very similar to the printf function from the standard c library.
-	it is a variadic function that accepts as argument the format string (*format) and different
+	But it is a variadic function that returns also the size of the entered characters. The function
+	accepts as argument the format string (*format) and different
 	data types.
 RETURN VALUE
-		
+	The function returns the size of the printed characters of the entered string.
+	in case of failure, it returns -1.
+FORMAT SPECIFIERS
+	The argument *format can cointain different format specifiers followed by percentage(%)
+	symbol. It can accept the following specifiers:
+	-%c: For printing one character
+	-%s: For printing the string
+	-%d and %i: For printing the decimal integers
+EXAMPLES
+	
+	
+SEE ALSO
+	prinf(),write(),va_start(),va_arg(),va_end()
+AUTHOR
+	Cahid and Elvin
