@@ -48,7 +48,7 @@ int handle_print(const char *format, int *i, va_list *el)
  *
  * @format: format str
  *
- * Return: Always 0
+ * Return: The size
  */
 int _printf(const char *format, ...)
 {
