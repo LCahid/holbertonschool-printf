@@ -1,65 +1,45 @@
-NAME 
-	printf
+#!/bin/bash
+echo ".\" Manual page for printf
+.TH  PRINTF 3.3 "2023-12-02"
 
-SYNOPSIS
-	#include <stdlib.h>
-	#include <unistd.h>
-	#include <stdarg.h>
-	int _printf(const char *format, ...);
-DESCRIPTION
-	The '_printf' function is very similar to the printf function from the standard c library.
-	But it is a variadic function that returns the size of the entered characters. The function
-	accepts as argument the format string (*format) and different data types.
-RETURN VALUE
-	The function returns the size of the printed characters of the entered string.
-	in case of failure, it returns -1.
-FORMAT SPECIFIERS
-	The argument *format can cointain different format specifiers followed by percentage(%)
-	symbol. It can accept the following specifiers:
-	-%c: For printing one character
-	-%s: For printing the string
-	-%d and %i: For printing the decimal integers
-EXAMPLES
-	#include <limits.h>
-	#include <stdio.h>
-	#include "main.h"
+.SH NAME
+printf
 
-	int main(void)
-	{
-		int len;
-		int len2;
-		unsigned int ui;
-		void *addr;
-
-		len = _printf("Let's try to printf a simple sentence.\n");
-		len2 = printf("Let's try to printf a simple sentence.\n");
-		ui = (unsigned int)INT_MAX + 1024;
-		addr = (void *)0x7ffe637541f0;
-		_printf("Length:[%d, %i]\n", len, len);
-		printf("Length:[%d, %i]\n", len2, len2);
-		_printf("Negative:[%d]\n", -762534);
-		printf("Negative:[%d]\n", -762534);
-		_printf("Unsigned:[%u]\n", ui);
-		printf("Unsigned:[%u]\n", ui);
-		_printf("Unsigned octal:[%o]\n", ui);
-		printf("Unsigned octal:[%o]\n", ui);
-		_printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
-		printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
-		_printf("Character:[%c]\n", 'H');
-		printf("Character:[%c]\n", 'H');
-		_printf("String:[%s]\n", "I am a string !");
-		printf("String:[%s]\n", "I am a string !");
-		_printf("Address:[%p]\n", addr);
-		printf("Address:[%p]\n", addr);
-		len = _printf("Percent:[%%]\n");
-		len2 = printf("Percent:[%%]\n");
-		_printf("Len:[%d]\n", len);
-		printf("Len:[%d]\n", len2);
-		_printf("Unknown:[%r]\n");
-		printf("Unknown:[%r]\n");
-		return (0);
-	}	
-SEE ALSO
-	prinf(),write(),va_start(),va_arg(),va_end()
-AUTHOR
-	Cahid and Elvin
+.SH SYNOPSIS
+\fB#include <stdlib.h>\fR
+.br
+\fB#include <unistd.h>\fR
+.br
+\fB#include <stdarg.h>\fR
+.br
+\fBint _printf(const char *format, ...);\fR
+.SH DESCRIPTION
+The \fB_printf\fR function is very similar to the printf function from the standard c library.But it is a variadic function that returns the size of the entered characters. The function accepts as argument the format string (*format) and different data types.
+.SH RETURN VALUE
+The function returns the size of the printed characters of the entered string. in case of failure, it returns -1.
+.SH FORMAT SPECIFIERS
+The argument *format can cointain different format specifiers followed by percentage(%)
+.TP
+symbol. It can accept the following specifiers:
+.TP
+\fB%c\fR
+For printing one character
+.TP
+\fB%s\fR
+For printing the string
+.TP
+\fB%d and %i\R
+For printing the decimal integers
+.SH EXAMPLES
+.P
+\fBprintf("Negative:[%d]\n", -762534);\fR
+\fBprintf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);\fR
+\fBprintf("Character:[%c]\n", 'H');\fR
+\fBprintf("String:[%s]\n", "I am a string !");\fR
+.SH SEE ALSO
+\fBprinf(),write(),va_start(),va_arg(),va_end()\fR
+.SH AUTHOR
+\fBCahid and Elvin\fR" > _printf.1
+mv _printf.1 /usr/local/man/man1/
+gzip -f /usr/local/man/man1/_printf.1
+man _printf
